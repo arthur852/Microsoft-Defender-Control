@@ -21,7 +21,7 @@ namespace Microsoft_Defender_Control
             get
             {
                 RegistryKey windowsDefenderKey = _currentUserKey.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection");
-                return windowsDefenderKey.GetValue("DisableRealtimeMonitoring").ToString() == "1";
+                return windowsDefenderKey?.GetValue("DisableRealtimeMonitoring")?.ToString() != "1";
             }
         }
 
