@@ -16,8 +16,22 @@ do
 
 void ShowMenu()
 {
+    Console.ForegroundColor = ConsoleColor.DarkGray;
+    Console.Write($"The Defender is now ");
+
+    if (defenderController.IsEnable)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write("[ON]");
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write("[OFF]");
+    }
+
     Console.ForegroundColor = ConsoleColor.DarkGreen;
-    Console.WriteLine("1. Enable Defender");
+    Console.WriteLine("\n1. Enable Defender");
     Console.ForegroundColor = ConsoleColor.DarkRed;
     Console.WriteLine("2. Disable Defender");
     Console.ResetColor();

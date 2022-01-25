@@ -16,8 +16,24 @@ namespace Microsoft_Defender_Control
             }
         }
 
+        public bool IsEnable
+        {
+            get
+            {
+                RegistryKey windowsDefenderKey = _currentUserKey.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection");
+                return windowsDefenderKey.GetValue("DisableRealtimeMonitoring").ToString() == "1";
+            }
+        }
+
         public void EnableDefender()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now the pc will reboot!");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Press to do this..");
+            Console.ResetColor();
+            Console.ReadKey();
+
             RegistryKey windowsDefenderKey = _currentUserKey.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender");
             windowsDefenderKey.DeleteValue("AllowFastServiceStartup", false);
             windowsDefenderKey.DeleteValue("DisableAntiSpyware", false);
@@ -35,13 +51,6 @@ namespace Microsoft_Defender_Control
             windowsDefenderKey = _currentUserKey.CreateSubKey(@"SYSTEM\CurrentControlSet\Services\WinDefend");
             windowsDefenderKey.SetValue("Start", 2, RegistryValueKind.DWord);
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Now the pc will reboot!");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Press to do this..");
-            Console.ResetColor();
-            Console.ReadKey();
-
             var p = new Process();
             p.StartInfo.FileName = @"C:\Windows\System32\cmd.exe";
             p.StartInfo.WorkingDirectory = @"C:\Windows\System32";
@@ -51,6 +60,12 @@ namespace Microsoft_Defender_Control
 
         public void DisableDefender()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now the PC will reboot in safe mode!");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Press to do this..");
+            Console.ReadKey();
+
             RegistryKey windowsDefenderKey = _currentUserKey.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender");
             windowsDefenderKey.SetValue("DisableAntiSpyware", 1, RegistryValueKind.DWord);
             windowsDefenderKey.SetValue("AllowFastServiceStartup", 0, RegistryValueKind.DWord);
@@ -64,12 +79,6 @@ namespace Microsoft_Defender_Control
             windowsDefenderKey.SetValue("DisableBlockAtFirstSeen", 1, RegistryValueKind.DWord);
             windowsDefenderKey.SetValue("LocalSettingOverrideSpynetReporting", 0, RegistryValueKind.DWord);
             windowsDefenderKey.SetValue("SubmitSamplesConsent", 2, RegistryValueKind.DWord);
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Now the PC will reboot in safe mode!");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Press to do this..");
-            Console.ReadKey();
 
             var p = new Process();
             p.StartInfo.FileName = @"C:\Windows\System32\cmd.exe";
