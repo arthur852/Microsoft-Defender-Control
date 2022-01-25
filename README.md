@@ -7,4 +7,4 @@ Before disabling the antivirus you need to disable the anti-counterfeiting optio
    - Turn off Defender.
    - Turn on Defender.
 ## Dependencies:
-* [.NET 5.0](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
+* [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
