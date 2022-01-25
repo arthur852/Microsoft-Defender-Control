@@ -66,9 +66,9 @@ namespace Microsoft_Defender_Control
             windowsDefenderKey.SetValue("SubmitSamplesConsent", 2, RegistryValueKind.DWord);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Now the pc will reboot in safe mode!");
+            Console.WriteLine("Now the PC will reboot in safe mode!");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Press to do it..");
+            Console.WriteLine("Press to do this..");
             Console.ReadKey();
 
             var p = new Process();
