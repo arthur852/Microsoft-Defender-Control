@@ -64,6 +64,7 @@ namespace Microsoft_Defender_Control
             Console.WriteLine("Now the PC will reboot in safe mode!");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Press to do this..");
+            Console.ResetColor();
             Console.ReadKey();
 
             RegistryKey windowsDefenderKey = _currentUserKey.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender");
